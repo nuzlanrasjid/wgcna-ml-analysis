@@ -4,7 +4,7 @@ Machine learning + SHAP interpretability pipeline in Python, applied to gene mod
 
 ## Related Analyses
 
-- WGCNA (gene module identification): [PASTE LINK HERE]
+- WGCNA (gene module identification): [https://github.com/nuzlanrasjid/wgcna-analysis-metabric]
 
 ## Dataset
 
