@@ -25,25 +25,17 @@ Tested in Python on Google Colab.
 
 ## Pipeline
 
-| Step | Script section | Function(s) |
-|---|---|---|
-| 1. Load dataset & identify column types (clinical / mutation / gene) | `wgcna_after_ml.py` | base pandas |
-| 2. Select genes from significant WGCNA modules, with name-matching validation | `wgcna_after_ml.py` | `isin()`, `df.columns` matching |
-| 3. Add clinical traits, with name-matching validation | `wgcna_after_ml.py` | base pandas |
-| 4. Filter to 5 PAM50 classes, drop missing values, define X/Y | `wgcna_after_ml.py` | `dropna()`, `LabelEncoder` |
-| 5. Train-test split & feature scaling | `wgcna_after_ml.py` | `train_test_split()`, `StandardScaler` |
-| 6. Train classifiers | `wgcna_after_ml.py` | `XGBClassifier`, `RandomForestClassifier`, `SVC` |
-| 7. Compute SHAP values per model, with array-shape validation | `wgcna_after_ml.py` | `shap.TreeExplainer`, `shap.KernelExplainer` |
-| 8. Per-class + cross-model biomarker ranking | `wgcna_after_ml.py` | `mean(|SHAP value|)`, rank averaging |
-| 9. Directional check & stability check on top candidates | `wgcna_after_ml.py` | `shap.summary_plot()`, repeated train-test splits |
+All steps below live in a single script, [`wgcna_after_ml.py`](./wgcna_after_ml.py):
 
-Full annotated script: [`wgcna_after_ml.py`](./wgcna_after_ml.py)
-
-## How to run
-
-1. Download `METABRIC_RNA_Mutation.csv` from Kaggle and `metabric_gene_modules_R.csv` from the WGCNA analysis, and place both in `data/`.
-2. Open `wgcna_after_ml.py` in Google Colab (or a local Python/Jupyter environment).
-3. Run top to bottom. Figures are written to `output/figures/`, tables to `output/tables/`.
+1. **Load dataset & identify column types** (clinical / mutation / gene) — base pandas
+2. **Select genes from significant WGCNA modules**, with name-matching validation — `isin()`, `df.columns` matching
+3. **Add clinical traits**, with name-matching validation — base pandas
+4. **Filter to 5 PAM50 classes, drop missing values, define X/Y** — `dropna()`, `LabelEncoder`
+5. **Train-test split & feature scaling** — `train_test_split()`, `StandardScaler`
+6. **Train classifiers** — `XGBClassifier`, `RandomForestClassifier`, `SVC`
+7. **Compute SHAP values per model**, with array-shape validation — `shap.TreeExplainer`, `shap.KernelExplainer`
+8. **Per-class + cross-model biomarker ranking** — `mean(|SHAP value|)`, rank averaging
+9. **Directional check & stability check** on top candidates — `shap.summary_plot()`, repeated train-test splits
 
 ## Results
 
