@@ -31,10 +31,10 @@ from collections import Counter  # used later for the stability check
 
 """## Load Dataset"""
 
-df_gene_module = pd.read_csv("/content/drive/My Drive/Latihan WGCNA/metabric_gene_modules_R.csv")
+df_gene_module = pd.read_csv("/content/drive/My Drive/path_file/metabric_gene_modules_R.csv")
 df_gene_module.shape
 
-df = pd.read_csv("/content/drive/My Drive/Latihan WGCNA/METABRIC_RNA_Mutation.csv")
+df = pd.read_csv("/content/drive/My Drive/path_file/METABRIC_RNA_Mutation.csv")
 df.shape
 
 """## Identify Columns"""
@@ -241,7 +241,7 @@ plt.bar(hasil_akurasi["model"], hasil_akurasi["accuracy"], color=["#1f77b4", "#2
 plt.ylabel("Accuracy")
 plt.title("Perbandingan akurasi model (PAM50 subtype)")
 plt.ylim(0, 1)
-plt.savefig("/content/drive/My Drive/Latihan WGCNA/gambar alur 1/perbandingan_akurasi_model.png", dpi=150, bbox_inches="tight")
+plt.savefig("/content/drive/My Drive/path_file/perbandingan_akurasi_model.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 """## SHAP for XGBoost"""
@@ -266,12 +266,12 @@ elif isinstance(shap_values_xgb, list):
 
 plt.figure()
 shap.summary_plot(shap_values_xgb, X_test, class_names=le.classes_, show=False)
-plt.savefig("/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_summary_xgboost.png", dpi=150, bbox_inches="tight")
+plt.savefig("/content/drive/My Drive/path_file/shap_summary_xgboost.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 shap.summary_plot(shap_values_xgb, X_test, class_names=le.classes_,
                    plot_type="bar", show=False)
-plt.savefig("/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_bar_xgboost.png", dpi=150, bbox_inches="tight")
+plt.savefig("/content/drive/My Drive/path_file/shap_bar_xgboost.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 """## SHAP for Random Forest"""
@@ -290,12 +290,12 @@ elif isinstance(shap_values_rf, list):
 
 plt.figure()
 shap.summary_plot(shap_values_rf, X_test, class_names=le.classes_, show=False)
-plt.savefig("/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_summary_rf.png", dpi=150, bbox_inches="tight")
+plt.savefig("/content/drive/My Drive/path_file/shap_summary_rf.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 shap.summary_plot(shap_values_rf, X_test, class_names=le.classes_,
                    plot_type="bar", show=False)
-plt.savefig("/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_bar_rf.png", dpi=150, bbox_inches="tight")
+plt.savefig("/content/drive/My Drive/path_file/shap_bar_rf.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 """## SHAP for SVM"""
@@ -308,12 +308,12 @@ shap_values_svm = explainer_svm.shap_values(X_test_small, nsamples=100)
 
 plt.figure()
 shap.summary_plot(shap_values_svm, X_test_small, class_names=le.classes_, show=False)
-plt.savefig("/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_summary_svm.png", dpi=150, bbox_inches="tight")
+plt.savefig("/content/drive/My Drive/path_file/shap_summary_svm.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 shap.summary_plot(shap_values_svm, X_test_small, class_names=le.classes_,
                    plot_type="bar", show=False)
-plt.savefig("/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_bar_svm.png", dpi=150, bbox_inches="tight")
+plt.savefig("/content/drive/My Drive/path_file/shap_bar_svm.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 """## Per-Class + Cross-Model SHAP Ranking (Biomarker Screening)"""
@@ -362,7 +362,7 @@ rank_table = rank_table.sort_values("avg_rank")
 print(f"\n=== KANDIDAT BIOMARKER UNTUK KELAS: {CLASS_OF_INTEREST} (Konsisten di 3 Model) ===")
 print(rank_table.head(10))
 
-rank_table.to_csv(f"/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_rank_agreement_{CLASS_OF_INTEREST}.csv")
+rank_table.to_csv(f"/content/drive/My Drive/path_file/shap_rank_agreement_{CLASS_OF_INTEREST}.csv")
 
 """## Directional Check + Stability Check"""
 
@@ -382,7 +382,7 @@ shap_values_xgb_focus = shap_values_xgb_focus[:, col_idx]
 plt.figure()
 shap.summary_plot(shap_values_xgb_focus, X_test_focus, show=False)
 plt.title(f"Directional check (XGBoost) - kelas: {CLASS_OF_INTEREST}")
-plt.savefig(f"/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_directional_xgb_{CLASS_OF_INTEREST}.png", dpi=150, bbox_inches="tight")
+plt.savefig(f"/content/drive/My Drive/path_file/shap_directional_xgb_{CLASS_OF_INTEREST}.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # How to read it: red dots (high feature value) clustering on the positive side
@@ -434,4 +434,4 @@ for seed in range(N_REPEATS):
 print(f"\n=== STABILITY CHECK: frekuensi muncul di top-10 dari {N_REPEATS} split (kelas: {CLASS_OF_INTEREST}) ===")
 stability_table = pd.Series(top_n_appearances).sort_values(ascending=False)
 print(stability_table)
-stability_table.to_csv(f"/content/drive/My Drive/Latihan WGCNA/gambar alur 1/shap_stability_{CLASS_OF_INTEREST}.csv")
+stability_table.to_csv(f"/content/drive/My Drive/path_file/shap_stability_{CLASS_OF_INTEREST}.csv")
