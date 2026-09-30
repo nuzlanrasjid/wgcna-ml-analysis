@@ -11,9 +11,9 @@ Machine learning + SHAP interpretability pipeline in Python, applied to gene mod
 - **Source:** [Breast Cancer Gene Expression Profiles (METABRIC)](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric) — Kaggle
 - **Samples:** 1,904 breast cancer patients (1,240 after filtering to the 5 PAM50 classes and dropping missing values)
 - **Features used:** 137 total — 132 genes from 4 significant WGCNA modules (`blue`, `turquoise`, `brown`, `yellow`) + 5 clinical traits (age at diagnosis, tumor size, tumor stage, lymph nodes examined positive, Nottingham Prognostic Index)
-- **Target classes:** 5 PAM50 molecular subtypes — Basal, LumA, LumB, Her2, Normal
+- **Target classes:** 5 PAM50 molecular subtypes: Basal, LumA, LumB, Her2, Normal
 
-> The raw CSV and the WGCNA module-assignment file are not included in this repository due to size/licensing — download `METABRIC_RNA_Mutation.csv` from the Kaggle link above and place it, along with `metabric_gene_modules_R.csv` (output of the WGCNA analysis linked above), as `data/`.
+> The raw CSV and the WGCNA module-assignment file are not included in this repository due to size/licensing, please download `METABRIC_RNA_Mutation.csv` from the Kaggle link above and place it, along with `metabric_gene_modules_R.csv` (output of the WGCNA analysis linked above), as `data/`.
 
 ## Requirements
 
